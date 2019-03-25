@@ -50,21 +50,28 @@ class Hangman:
         words = ["vinegar", "cider", "lemon", "banana", "orange", "chicken", "giraffe", "lasagne"]
         word = words[randint(0, len(words)-1)]
         hidden_word = ""
+        wrong_guesses = ""
         for i in range(0, len(word)):
             hidden_word += "_"
         guesses_left = 8
         while guesses_left > 0 and hidden_word != word:
+            if len(wrong_guesses) > 0:
+                print("Wrong guesses: " + wrong_guesses)
             print(str(guesses_left) + " guesses left.")
             print(hidden_word)
             guess = input("Enter a letter: ")
             if guess in word:
                 print("OK")
-                guess_location = word.find(guess)
-                hidden_word = hidden_word[:guess_location] + guess + hidden_word[guess_location+1:]
+                # Save locations of all hits in list
+                guess_location = ([pos for pos, char in enumerate(word) if char == guess])
+                for g in guess_location:
+                    # Replace underscores by actual character
+                    hidden_word = hidden_word[:g] + guess + hidden_word[g+1:]
             else:
                 print("Wrong!")
+                wrong_guesses += guess
                 guesses_left -= 1
         if hidden_word == word:
-            print("Congratulations, " + self.name + "! You won the game with " + str(guesses_left) + " guesses left.")
+            print("Congratulations, " + self.name + "! You've won the game with " + str(guesses_left) + " guesses left.")
         else:
             print("GAME OVER\nThe correct word was " + word)

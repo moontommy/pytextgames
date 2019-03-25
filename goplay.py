@@ -1,12 +1,12 @@
-from random import randint
-from games import Guessthenumber, Hangman
+# Quick demo for using the pytextgames library
+from pytextgames import Guessthenumber, Hangman
 
 
 name = input("Hi, there!\nWhat's your name?\n")
 games = ["Guess the number", "Hangman"]
 
 
-print("Hello," + name + ", nice to meet you!")
+print("Hello, " + name + ", nice to meet you!")
 print("How are you today?")
 print("Your name is " + str(len(name)) + " characters long.")
 
