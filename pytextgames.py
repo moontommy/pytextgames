@@ -2,16 +2,16 @@ from random import randint
 
 
 class Guessthenumber:
-    def __init__(self):
-        self.name = "dude"
-        self.lowest = 1
-        self.highest = 100
-
-
-    def __init__(self, name):
-        self.name = name
-        self.lowest = 1
-        self.highest = 100
+    # def __init__(self):
+    #     self.name = "dude"
+    #     self.lowest = 1
+    #     self.highest = 100
+    #
+    #
+    # def __init__(self, name):
+    #     self.name = name
+    #     self.lowest = 1
+    #     self.highest = 100
 
 
     def __init__(self, name, lowest, highest):
@@ -21,7 +21,7 @@ class Guessthenumber:
 
 
     def play(self):
-        print("Guess a number between " + str(self.lowest) + " and " + str(self.highest))
+        print("Guess a number between {0} and {1}.".format(self.lowest, self.highest))
         number = randint(self.lowest, self.highest)
         guess = 0
         guesses = 0
@@ -33,7 +33,7 @@ class Guessthenumber:
             guesses += 1
             if guess == number:
                 print("That's correct!")
-                print("Congratulations, " + self.name + ". You guessed the number after " + str(guesses) + " attempts.")
+                print("Congratulations, {0}. You guessed the number after {1} attempts.".format(self.name, guesses))
             else:
                 if number > guess:
                     print("Guess a higher number")
@@ -56,8 +56,8 @@ class Hangman:
         guesses_left = 8
         while guesses_left > 0 and hidden_word != word:
             if len(wrong_guesses) > 0:
-                print("Wrong guesses: " + wrong_guesses)
-            print(str(guesses_left) + " guesses left.")
+                print("Wrong guesses: {0}".format(wrong_guesses))
+            print("{0} guesses left.".format(guesses_left))
             print(hidden_word)
             guess = input("Enter a letter: ")
             if guess in word:
@@ -72,6 +72,6 @@ class Hangman:
                 wrong_guesses += guess
                 guesses_left -= 1
         if hidden_word == word:
-            print("Congratulations, " + self.name + "! You've won the game with " + str(guesses_left) + " guesses left.")
+            print("Congratulations, {0}! You've won the game with {1} guesses left.".format(self.name, guesses_left))
         else:
-            print("GAME OVER\nThe correct word was " + word)
+            print("GAME OVER\nThe correct word was {0}".format(word))

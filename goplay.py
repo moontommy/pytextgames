@@ -1,14 +1,18 @@
+#!/usr/bin/env python3
+
+
 # Quick demo for using the pytextgames library
 from pytextgames import Guessthenumber, Hangman
 
 
-name = input("Hi, there!\nWhat's your name?\n")
+playername = input("Hi, there!\nWhat's your name?\n")
 games = ["Guess the number", "Hangman"]
 
 
-print("Hello, " + name + ", nice to meet you!")
+print("Hello, {0}, nice to meet you!".format(playername))
 print("How are you today?")
-print("Your name is " + str(len(name)) + " characters long.")
+print("Your name is {0} characters long.".format(len(playername)))
+
 
 while True:
     answer = input("Would you like to play another game? ")
@@ -16,15 +20,15 @@ while True:
         print("Maybe another time.\nBye!")
         exit(0)
     else:
-        print("I have " + str(len(games)) + " games available.")
+        print("I have games available.".format(len(games)))
         print("Which game would you like to play? ")
         for game in games:
             print(str(games.index(game)+1), game)
         choice = input("Enter the number of the game: ")
         print(choice)
         if choice == "1":
-            g = Guessthenumber(name, 1, 100)
+            g = Guessthenumber(playername, 1, 100)
             g.play()
         elif choice == "2":
-            h = Hangman(name)
+            h = Hangman(playername)
             h.play()
