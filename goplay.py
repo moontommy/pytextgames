@@ -6,7 +6,7 @@ from pytextgames import Guessthenumber, Hangman
 
 
 playername = input("Hi, there!\nWhat's your name?\n")
-games = ["Guess the number", "Hangman"]
+games = ["Guess the number", "Hangman", "Blackjack"]
 
 
 print("Hello, {0}, nice to meet you!".format(playername))
@@ -32,3 +32,7 @@ while True:
         elif choice == "2":
             h = Hangman(playername)
             h.play()
+        elif choice == "3":
+            b = Blackjack()
+            b.play()
+            
