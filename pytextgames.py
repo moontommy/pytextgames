@@ -2,11 +2,11 @@ from random import randint
 
 
 class Blackjack:
-    def __init__(self, name, lowest, highest):
+    def __init__(self, name):
         self.name = name
 
 
-    def takeCard():
+    def takeCard(self):
         card_families = ("Hearts", "Diamonds", "Clubs", "Spades")
         card_no = randint(0, 52)
         card_family = card_families[int((card_no - .1) / 13)]
@@ -32,7 +32,7 @@ class Blackjack:
         points = 0
         cards = 0
         while True:
-            value, card = takeCard()
+            value, card = self.takeCard()
             cards += 1
             print(card)
             points += value

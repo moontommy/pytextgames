@@ -2,7 +2,7 @@
 
 
 # Quick demo for using the pytextgames library
-from pytextgames import Guessthenumber, Hangman
+from pytextgames import Guessthenumber, Hangman, Blackjack
 
 
 playername = input("Hi, there!\nWhat's your name?\n")
@@ -33,6 +33,5 @@ while True:
             h = Hangman(playername)
             h.play()
         elif choice == "3":
-            b = Blackjack()
+            b = Blackjack(playername)
             b.play()
-            
