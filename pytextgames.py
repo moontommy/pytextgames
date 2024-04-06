@@ -134,20 +134,16 @@ class RockPaperScissors:
         its_game_on = True
         while its_game_on:
             computerchoice = randint(0, 2)
-            print("What's you choice?")
-            i = 1
+            print("What's your choice?")
             for o in options:
-                print(str(i) + ". " + o.capitalize())
-                i += 1
+                print(str(options.index(o) + 1), o.capitalize())
             msg = ("Pick a number from 1 to " + str(len(options)) + "\n")
             try:
                 playerchoice = int(input(msg)) - 1
             except ValueError:
                 print(msg)
-            print("Computer picked " + str(options[computerchoice]))
+            print("Computer picked " + str(options[computerchoice]) + ".")
             # Calculate winner
-            #
-            # Handle ties
             if playerchoice == computerchoice:
                 print("It's a tie!")
             if playerchoice == 0:
@@ -180,6 +176,8 @@ class RockPaperScissors:
                     # Computer picks paper
                     print("Scissors cut paper.\nPlayer wins!")
                     playerscore += 1
+            else:
+                print("That's not a valid option.")
             # Print score
             if playerscore == computerscore:
                 print("It's a tie with " + str(playerscore) + " points")
