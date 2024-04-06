@@ -2,11 +2,11 @@
 
 
 # Quick demo for using the pytextgames library
-from pytextgames import Guessthenumber, Hangman, Blackjack
+from pytextgames import Guessthenumber, Hangman, Blackjack, RockPaperScissors
 
 
 playername = input("Hi, there!\nWhat's your name?\n")
-games = ["Guess the number", "Hangman", "Blackjack"]
+games = ["Guess the number", "Hangman", "Blackjack", "Rock, Paper, Scissors"]
 
 
 print("Hello, {0}, nice to meet you!".format(playername))
@@ -35,3 +35,6 @@ while True:
         elif choice == "3":
             b = Blackjack(playername)
             b.play()
+        elif choice == "4":
+            r = RockPaperScissors(playername)
+            r.play()

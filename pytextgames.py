@@ -120,3 +120,72 @@ class Hangman:
             print("Congratulations, {0}! You've won the game with {1} guesses left.".format(self.name, guesses_left))
         else:
             print("GAME OVER\nThe correct word was {0}".format(word))
+
+
+class RockPaperScissors:
+    def __init__(self, name):
+        self.name = name
+
+
+    def play(self):
+        options = ["rock", "paper", "scissors"]
+        playerscore = 0
+        computerscore = 0
+        its_game_on = True
+        while its_game_on:
+            computerchoice = randint(0, 2)
+            print("What's you choice?")
+            i = 1
+            for o in options:
+                print(str(i) + ". " + o.capitalize())
+                i += 1
+            msg = ("Pick a number from 1 to " + str(len(options)) + "\n")
+            try:
+                playerchoice = int(input(msg)) - 1
+            except ValueError:
+                print(msg)
+            print("Computer picked " + str(options[computerchoice]))
+            # Calculate winner
+            #
+            # Handle ties
+            if playerchoice == computerchoice:
+                print("It's a tie!")
+            if playerchoice == 0:
+                # Player picks rock
+                if computerchoice == 1:
+                    # Computer picks paper
+                    print("Paper covers rock.\nComputer wins!")
+                    computerscore += 1
+                elif computerchoice == 2:
+                    # Computer picks scissors
+                    print("Rock smashes scissors.\nPlayer wins!")
+                    playerscore += 1
+            elif playerchoice == 1:
+                # Player picks paper
+                if computerchoice == 0:
+                    # Computer picks rock
+                    print("Paper covers rock.\nPlayer wins!")
+                    playerscore += 1
+                elif computerchoice == 2:
+                    # Computer picks scissors
+                    print("Scissors cut paper.\nComputer wins!")
+                    computerscore += 1
+            elif playerchoice == 2:
+                # Player picks scissors
+                if computerchoice == 0:
+                    # Computer picks rock
+                    print("Rock smashes scissors.\nComputer wins!")
+                    computerscore += 1
+                elif computerchoice == 1:
+                    # Computer picks paper
+                    print("Scissors cut paper.\nPlayer wins!")
+                    playerscore += 1
+            # Print score
+            if playerscore == computerscore:
+                print("It's a tie with " + str(playerscore) + " points")
+            elif playerscore > computerscore:
+                print(self.name + " is leading with " + str(playerscore) + " to " + str(computerscore))
+            elif computerscore > playerscore:
+                print("Computer is leading with " + str(computerscore) + " to " + str(playerscore))
+            if input("Do you want to continue? (y/n)") not in ["yes", "y", "yeah", "hell yeah", "you bet"]:
+                its_game_on = False
