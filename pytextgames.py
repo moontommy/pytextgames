@@ -104,7 +104,7 @@ class Hangman:
         word = choice(word_choices)
         hidden_word = ""
         wrong_guesses = ""
-        for i in range(0, len(word) - 2):
+        for i in range(0, len(word) - 3):
             hidden_word += "_"
         guesses_left = 8
         while guesses_left > 0 and hidden_word != word:
