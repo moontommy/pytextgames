@@ -101,7 +101,7 @@ class Hangman:
             word = str(word).replace('b', '')
             if len(word) > 4:
                 word_choices += [word]
-        word = random.choice(word_choices)
+        word = choice(word_choices)
         hidden_word = ""
         wrong_guesses = ""
         for i in range(0, len(word)):
