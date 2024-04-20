@@ -1,4 +1,4 @@
-from random import randint
+from random import randint, choice
 import requests
 
 YES_ANSWERS = ["yes", "y", "yeah", "hell yeah", "you bet"]
