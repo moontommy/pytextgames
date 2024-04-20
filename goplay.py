@@ -9,9 +9,9 @@ playername = input("Hi, there!\nWhat's your name?\n")
 games = ["Guess the number", "Hangman", "Blackjack", "Rock, Paper, Scissors"]
 
 
-print("Hello, {0}, nice to meet you!".format(playername))
+print(f"Hello, {playername}, nice to meet you!")
 print("How are you today?")
-print("Your name is {0} characters long.".format(len(playername)))
+print(f"Your name is {len(playername)} characters long.")
 
 
 while True:
@@ -20,12 +20,11 @@ while True:
         print("Maybe another time.\nBye!")
         exit(0)
     else:
-        print("I have games available.".format(len(games)))
+        print(f"I have {len(games)} games available.")
         print("Which game would you like to play? ")
         for game in games:
             print(str(games.index(game)+1), game)
-        choice = input("Enter the number of the game: ")
-        print(choice)
+        choice = input("Enter the game number: ")
         if choice == "1":
             g = Guessthenumber(playername, 1, 100)
             g.play()
