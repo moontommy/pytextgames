@@ -1,4 +1,4 @@
-from random import randint, choice
+from random import randint
 import requests
 
 YES_ANSWERS = ["yes", "y", "yeah", "hell yeah", "you bet"]
@@ -101,7 +101,7 @@ class Hangman:
             word = str(word).replace('b', '')
             if len(word) > 4:
                 word_choices += [word]
-        word = choice(word_choices)
+        word = word_choices[randint(0, len(word_choices) - 1)]
         hidden_word = "_" * len(word)
         wrong_guesses = ""
         guesses_left = 8
