@@ -102,7 +102,7 @@ class Hangman:
             if len(word) > 4:
                 word_choices += [word]
         word = choice(word_choices)
-        hidden_word = "_" * len(word)
+        hidden_word = "_" * len(word) - 1
         wrong_guesses = ""
         guesses_left = 8
         while guesses_left > 0 and hidden_word != word:
@@ -117,7 +117,7 @@ class Hangman:
                 guess_location = ([pos for pos, char in enumerate(word) if char == guess])
                 for g in guess_location:
                     # Replace underscores by actual character
-                    hidden_word = hidden_word[:g-1] + guess + hidden_word[g+1:]
+                    hidden_word = hidden_word[:g] + guess + hidden_word[g+1:]
             else:
                 print("Wrong!")
                 wrong_guesses += guess
