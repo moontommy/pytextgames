@@ -1,4 +1,4 @@
-from random import randint
+from random import randint, choice
 import requests
 
 YES_ANSWERS = ["yes", "y", "yeah", "hell yeah", "you bet"]
@@ -101,7 +101,7 @@ class Hangman:
             word = str(word).replace('b', '')
             if len(word) > 4:
                 word_choices += [word]
-        word = word_choices[randint(0, len(word_choices) - 1)]
+        word = choice(word_choices)
         hidden_word = "_" * len(word)
         wrong_guesses = ""
         guesses_left = 8
@@ -117,7 +117,7 @@ class Hangman:
                 guess_location = ([pos for pos, char in enumerate(word) if char == guess])
                 for g in guess_location:
                     # Replace underscores by actual character
-                    hidden_word = hidden_word[:g] + guess + hidden_word[g+1:]
+                    hidden_word = hidden_word[:g-1] + guess + hidden_word[g+1:]
             else:
                 print("Wrong!")
                 wrong_guesses += guess
