@@ -98,11 +98,11 @@ class Hangman:
         words = requests.get("https://www.mit.edu/~ecprice/wordlist.10000").content.splitlines()
         word_choices = []
         for word in words:
-            word = str(word).replace('b', '')
+            word = str(word).replace('b', '').replace("'", "")
             if len(word) > 4:
                 word_choices += [word]
         word = choice(word_choices)
-        hidden_word = "_" * (len(word) - 1)
+        hidden_word = "_" * len(word)
         wrong_guesses = ""
         guesses_left = 8
         while guesses_left > 0 and hidden_word != word:
