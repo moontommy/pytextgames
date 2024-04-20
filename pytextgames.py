@@ -1,4 +1,7 @@
 from random import randint
+import requests
+
+YES_ANSWERS = ["yes", "y", "yeah", "hell yeah", "you bet"]
 
 
 class Blackjack:
@@ -25,7 +28,7 @@ class Blackjack:
             value_of_card = 10
         else:
             value_of_card = card_value
-        return(value_of_card, "{0} of {1}".format(card_value, card_family))
+        return(value_of_card, f"{card_value} of {card_family}")
 
 
     def play(self):
@@ -36,13 +39,13 @@ class Blackjack:
             cards += 1
             print(card)
             points += value
-            print("You now have {0} points.".format(points))
+            print(f"You now have {points} points.")
             if points > 21:
                 print("BUSTED!")
                 break;
             if cards >= 2:
                 answer = input("Another card? (y/n)")
-                if answer not in ["yes", "y", "yeah", "hell yeah", "you bet"]:
+                if answer not in YES_ANSWERS:
                     break;
 
 
@@ -66,7 +69,7 @@ class Guessthenumber:
 
 
     def play(self):
-        print("Guess a number between {0} and {1}.".format(self.lowest, self.highest))
+        print(f"Guess a number between {self.lowest} and {self.highest}.")
         number = randint(self.lowest, self.highest)
         guess = 0
         guesses = 0
@@ -78,7 +81,7 @@ class Guessthenumber:
             guesses += 1
             if guess == number:
                 print("That's correct!")
-                print("Congratulations, {0}. You guessed the number after {1} attempts.".format(self.name, guesses))
+                print(f"Congratulations, {self.name}. You guessed the number after {guesses} attempts.")
             else:
                 if number > guess:
                     print("Guess a higher number")
@@ -92,8 +95,13 @@ class Hangman:
 
 
     def play(self):
-        words = ["vinegar", "cider", "lemon", "banana", "orange", "chicken", "giraffe", "lasagne"]
-        word = words[randint(0, len(words)-1)]
+        words = requests.get("https://www.mit.edu/~ecprice/wordlist.10000").content.splitlines()
+        word_choices = []
+        for word in words:
+            word = str(word).replace('b', '')
+            if len(word) > 4:
+                word_choices += [word]
+        word = random.choice(word_choices)
         hidden_word = ""
         wrong_guesses = ""
         for i in range(0, len(word)):
@@ -101,8 +109,8 @@ class Hangman:
         guesses_left = 8
         while guesses_left > 0 and hidden_word != word:
             if len(wrong_guesses) > 0:
-                print("Wrong guesses: {0}".format(wrong_guesses))
-            print("{0} guesses left.".format(guesses_left))
+                print(f"Wrong guesses: {wrong_guesses}")
+            print(f"{guesses_left} guesses left.")
             print(hidden_word)
             guess = input("Enter a letter: ")
             if guess in word:
@@ -117,9 +125,9 @@ class Hangman:
                 wrong_guesses += guess
                 guesses_left -= 1
         if hidden_word == word:
-            print("Congratulations, {0}! You've won the game with {1} guesses left.".format(self.name, guesses_left))
+            print(f"Congratulations, {self.name}! You've won the game with {guesses_left} guesses left.")
         else:
-            print("GAME OVER\nThe correct word was {0}".format(word))
+            print(f"GAME OVER\nThe correct word was {word}")
 
 
 class RockPaperScissors:
@@ -137,12 +145,12 @@ class RockPaperScissors:
             print("What's your choice?")
             for o in options:
                 print(str(options.index(o) + 1), o.capitalize())
-            msg = ("Pick a number from 1 to " + str(len(options)) + "\n")
+            msg = (f"Pick a number from 1 to {len(options)}\n")
             try:
                 playerchoice = int(input(msg)) - 1
             except ValueError:
                 print(msg)
-            print("Computer picked " + str(options[computerchoice]) + ".")
+            print(f"Computer picked {options[computerchoice]}.")
             # Calculate winner
             if playerchoice == computerchoice:
                 print("It's a tie!")
@@ -180,10 +188,10 @@ class RockPaperScissors:
                 print("That's not a valid option.")
             # Print score
             if playerscore == computerscore:
-                print("It's a tie with " + str(playerscore) + " points")
+                print(f"It's a tie with {playerscore} points")
             elif playerscore > computerscore:
-                print(self.name + " is leading with " + str(playerscore) + " to " + str(computerscore))
+                print(f"{self.name} is leading with {playerscore} to {computerscore}")
             elif computerscore > playerscore:
-                print("Computer is leading with " + str(computerscore) + " to " + str(playerscore))
-            if input("Do you want to continue? (y/n)") not in ["yes", "y", "yeah", "hell yeah", "you bet"]:
+                print(f"Computer is leading with {computerscore} to {playerscore}")
+            if input("Do you want to continue? (y/n)") not in YES_ANSWERS:
                 its_game_on = False
